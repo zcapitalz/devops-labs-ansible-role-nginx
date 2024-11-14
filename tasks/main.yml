@@ -31,5 +31,5 @@
       state: restarted
     become: true
     
-  when: current_nginx_config_slurp.failed or
-        (nginx_config_content is defined and (nginx_config_content | trim) != (current_nginx_config_slurp.content | b64decode | trim))
+  when: nginx_config_content is defined and
+        (current_nginx_config_slurp.failed or (nginx_config_content | trim) != (current_nginx_config_slurp.content | b64decode | trim))
